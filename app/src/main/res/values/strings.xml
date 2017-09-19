@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">便捷Wi-Fi</string>
+    <string name="open_wlan">打开Wi-Fi</string>
+    <string name="wlan_status">Wi-Fi状态</string>
+    <string name="connect_wlan">连接</string>
+    <string name="cancel_wlan">取消</string>
+    <string name="wifiDialogPassword">密码: </string>
+    <string name="menu_Refresh">刷新</string>
+    <string name="menu_add_wlan">增加网络</string>
+    <string name="menu_show_wifi_details">显示Wi-Fi详细信息</string>
+    <string name="menu_custom_view_dialog">添加网络</string>
+    <string name="menu_custom_view_dialog_ssid">SSID:</string>
+    <string name="menu_custom_view_dialog_password">密码:</string>
+    <string name="menu_custom_view_dialog_security">加密方式:</string>
+    <string name="menu_custom_view_dialog_Login">添加</string>
+    <string name="menu_custom_view_dialog_Cancel">取消</string>
+    <string name="add_network_success">添加网络成功</string>
+    <string name="add_network_failed">添加网络失败</string>
+    <string name="add_network_null_information">请正确填写SSID 和 加密方式</string>
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="800px"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:theme="@style/WifiPswDialogTheme">
+
+
+    <!--空行-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20px"/>
+
+    <TextView
+        android:id="@+id/wifiDialogSSID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50px"
+        android:textSize="65px"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"/>
+
+    <!--空行-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20px"/>
+
+    <TextView
+        android:id="@+id/wifiDialogPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50px"
+        android:textSize="35px"
+        android:text="@string/wifiDialogPassword"/>
+
+    <EditText
+        android:id="@+id/wifiDialogPsw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"/>
+
+    <!--空行-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20px"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="2">
+
+        <Button
+            android:id="@+id/wifiDialogCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/cancel_wlan"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/wifiDialogCertain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/connect_wlan"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</LinearLayout>
+

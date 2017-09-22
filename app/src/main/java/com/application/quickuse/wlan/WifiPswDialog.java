@@ -21,7 +21,7 @@ public class WifiPswDialog extends Dialog {
 
     private String WiFi_SSID;
 
-    public WifiPswDialog(Context context, OnCustomDialogListener customListener,String SSID) {
+    public WifiPswDialog(Context context, OnCustomDialogListener customListener, String SSID) {
         super(context);
         customDialogListener = customListener;
 
@@ -56,12 +56,11 @@ public class WifiPswDialog extends Dialog {
         @Override
         public void onClick(View view) {
             // TODO Auto-generated method stub
-            if(view.getId() == R.id.wifiDialogCancel){
+            if (view.getId() == R.id.wifiDialogCancel) {
                 pswEdit = null;
                 customDialogListener.back(null);
                 cancel();//自动调用dismiss();
-            }
-            else{
+            } else {
                 customDialogListener.back(pswEdit.getText().toString());
                 dismiss();
             }

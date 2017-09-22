@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context="com.application.quickuse.wlan.MianWLANActivity">
+    tools:context="com.application.quickuse.wlan.MainWLANActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -19,7 +19,7 @@
             android:layout_weight="2"
             android:layout_gravity="center_vertical|center_horizontal"
             android:gravity="center"
-            android:textColor ="@color/colorAccent"
+            android:textColor="@color/colorAccent"
             android:textSize="65px" />
 
         <Switch
@@ -32,14 +32,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
     </LinearLayout>
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="wrap_content"></ListView>
 
 </LinearLayout>

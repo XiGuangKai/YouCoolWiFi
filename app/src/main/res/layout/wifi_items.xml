@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_gravity="left"
         android:background="@color/colorWhite"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <!--Wifi SSID-->
     <LinearLayout
@@ -36,8 +36,7 @@
             android:id="@+id/ssid"
             android:layout_weight="3"
             android:background="@color/colorWhite"
-            android:textColor="@color/colorBlack"
-            />
+            android:textColor="@color/colorBlack" />
 
         <!--Wifi隐藏信息，很遗憾暂未实现-->
         <TextView
@@ -48,7 +47,7 @@
             android:gravity="center_vertical|left"
             android:textSize="20px"
             android:layout_weight="1"
-            android:id="@+id/wlan_Rssi"/>
+            android:id="@+id/wlan_Rssi" />
 
         <TextView
             android:layout_width="wrap_content"

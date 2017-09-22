@@ -19,8 +19,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainWLANActivity"
-            android:launchMode="singleInstance"
-            android:configChanges="orientation|screenSize|keyboardHidden">
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

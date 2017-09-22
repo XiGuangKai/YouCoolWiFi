@@ -199,13 +199,13 @@ public class MainWLANActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-                HashMap item = (HashMap)arg0.getItemAtPosition(arg2);
+                HashMap item = (HashMap) arg0.getItemAtPosition(arg2);
                 //get每一行的数据的ssid
                 SSID_SECTION = String.valueOf(item.get("ssid").toString());
-                Log.i(TAG,"SSID is " + SSID_SECTION);
+                Log.i(TAG, "SSID is " + SSID_SECTION);
 
                 WLAN_ENCRYPTION = String.valueOf(item.get("wlan_encryption").toString());
-                Log.i(TAG,"ENCRYPTION is " + WLAN_ENCRYPTION);
+                Log.i(TAG, "ENCRYPTION is " + WLAN_ENCRYPTION);
 
 
                 ShowWifiDialog();
@@ -261,7 +261,7 @@ public class MainWLANActivity extends AppCompatActivity {
         //显示WiFiList
         listview = (ListView) findViewById(R.id.listView);
 
-        encryptimageId = new int[] {
+        encryptimageId = new int[]{
                 R.drawable.stat_sys_wifi_signal_0,
                 R.drawable.stat_sys_wifi_signal_1,
                 R.drawable.stat_sys_wifi_signal_2,
@@ -271,13 +271,13 @@ public class MainWLANActivity extends AppCompatActivity {
                 R.drawable.ic_wifi_signal_1_dark,
                 R.drawable.ic_wifi_signal_2_dark,
                 R.drawable.ic_wifi_signal_3_dark,
-                R.drawable.ic_wifi_signal_4_dark };
+                R.drawable.ic_wifi_signal_4_dark};
 
         listItems = new ArrayList<Map<String, Object>>();
 
         listadapter = new SimpleAdapter(this, listItems,
-                R.layout.wifi_items, new String[] { "ssid", "rssiimage", "wlan_encryption","wlan_Rssi"}, new int[] {
-                R.id.ssid, R.id.rssiimage, R.id.wlan_encryption,R.id.wlan_Rssi});
+                R.layout.wifi_items, new String[]{"ssid", "rssiimage", "wlan_encryption", "wlan_Rssi"}, new int[]{
+                R.id.ssid, R.id.rssiimage, R.id.wlan_encryption, R.id.wlan_Rssi});
 
         //设置wlan_connect_status控件属性隐藏<很遗憾暂未实现>
         //final LinearLayout inflater= (LinearLayout) getLayoutInflater().inflate(R.layout.wifi_items,null);
@@ -288,7 +288,7 @@ public class MainWLANActivity extends AppCompatActivity {
     }
 
     //将Wifi列表显示出来
-    public void showWifiList(){
+    public void showWifiList() {
 
         Log.d(TAG, "showWifiList enter");
 
@@ -296,17 +296,17 @@ public class MainWLANActivity extends AppCompatActivity {
         listItems.clear();
 
         //判断Wifi是否具有运行时权限,如果没有,通过onRequestPermissionsResult获取
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSIONS_REQUEST_CODE_ACCESS_COARSE_LOCATION);
-        }else{
-			//获取Wifi扫描结果
-			//do something, permission was previously granted; or legacy device
+        } else {
+            //获取Wifi扫描结果
+            //do something, permission was previously granted; or legacy device
             mScanResultlist = mWifiManager.getScanResults();
         }
 
         //使用此方式删除一些信号强度低于-60的AP
-        for (Iterator<ScanResult> it = mScanResultlist.iterator(); it.hasNext();) {
-            ScanResult mScanResult =  it.next();
+        for (Iterator<ScanResult> it = mScanResultlist.iterator(); it.hasNext(); ) {
+            ScanResult mScanResult = it.next();
             if (mScanResult.level < -60) {
                 it.remove();
             }
@@ -324,34 +324,34 @@ public class MainWLANActivity extends AppCompatActivity {
             listmap = new HashMap<String, Object>();
 
             //设置信号强度图标image
-            if(OPEN_WLAN.equals(mScanResult.capabilities)){
+            if (OPEN_WLAN.equals(mScanResult.capabilities)) {
 
-                if (-100 < mScanResult.level && -70 >= mScanResult.level){
+                if (-100 < mScanResult.level && -70 >= mScanResult.level) {
                     listmap.put("rssiimage", encryptimageId[5]);
-                }else if (-70 < mScanResult.level && -60 >= mScanResult.level ){
+                } else if (-70 < mScanResult.level && -60 >= mScanResult.level) {
                     listmap.put("rssiimage", encryptimageId[6]);
-                }else if(-60 < mScanResult.level && -50 >= mScanResult.level ){
+                } else if (-60 < mScanResult.level && -50 >= mScanResult.level) {
                     listmap.put("rssiimage", encryptimageId[7]);
-                }else if(-50 < mScanResult.level && -40 >= mScanResult.level){
+                } else if (-50 < mScanResult.level && -40 >= mScanResult.level) {
                     listmap.put("rssiimage", encryptimageId[8]);
-                }else if(-40 < mScanResult.level ){
+                } else if (-40 < mScanResult.level) {
                     listmap.put("rssiimage", encryptimageId[9]);
-                }else{
+                } else {
                     listmap.put("rssiimage", encryptimageId[9]);
                 }
 
-            }else{
-                if (-100 < mScanResult.level && -70 >= mScanResult.level){
+            } else {
+                if (-100 < mScanResult.level && -70 >= mScanResult.level) {
                     listmap.put("rssiimage", encryptimageId[0]);
-                }else if (-70 < mScanResult.level && -60 >= mScanResult.level ){
+                } else if (-70 < mScanResult.level && -60 >= mScanResult.level) {
                     listmap.put("rssiimage", encryptimageId[1]);
-                }else if(-60 < mScanResult.level && -50 >= mScanResult.level ){
+                } else if (-60 < mScanResult.level && -50 >= mScanResult.level) {
                     listmap.put("rssiimage", encryptimageId[2]);
-                }else if(-50 < mScanResult.level && -40 >= mScanResult.level){
+                } else if (-50 < mScanResult.level && -40 >= mScanResult.level) {
                     listmap.put("rssiimage", encryptimageId[3]);
-                }else if(-40 < mScanResult.level ){
+                } else if (-40 < mScanResult.level) {
                     listmap.put("rssiimage", encryptimageId[4]);
-                }else{
+                } else {
                     listmap.put("rssiimage", encryptimageId[4]);
                 }
             }
@@ -361,13 +361,13 @@ public class MainWLANActivity extends AppCompatActivity {
 
             listmap.put("wlan_encryption", "加密方式: " + mScanResult.capabilities);
 
-            listmap.put("wlan_Rssi", "信号强度: "+ mScanResult.level);
+            listmap.put("wlan_Rssi", "信号强度: " + mScanResult.level);
             //将AP一个一个的添加到List中
             listItems.add(listmap);
 
             /*将已经连接的AP放到List的最顶端*/
-            if (mScanResult.BSSID.equals(mCurrentWifi.getBSSID())){
-                listItems.add(0,listmap);
+            if (mScanResult.BSSID.equals(mCurrentWifi.getBSSID())) {
+                listItems.add(0, listmap);
             }
         }
 
@@ -378,7 +378,7 @@ public class MainWLANActivity extends AppCompatActivity {
 
     //获取Wifi运行时权限
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == PERMISSIONS_REQUEST_CODE_ACCESS_COARSE_LOCATION
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults.length > 0) {
             // Do something with granted permission
@@ -422,7 +422,7 @@ public class MainWLANActivity extends AppCompatActivity {
 
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume enter");
 
@@ -441,7 +441,7 @@ public class MainWLANActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause enter");
 
@@ -449,7 +449,7 @@ public class MainWLANActivity extends AppCompatActivity {
             //取消广播注册
             Log.d(TAG, "onPause unregisterReceiver");
             unregisterReceiver(mWifiStateReceiver);
-        }else if (WifiManager.WIFI_STATE_DISABLED == mWifiManager.getWifiState()) {
+        } else if (WifiManager.WIFI_STATE_DISABLED == mWifiManager.getWifiState()) {
             Log.d(TAG, "onPause WLAN_STATUS_OFF");
         }
 
@@ -465,7 +465,8 @@ public class MainWLANActivity extends AppCompatActivity {
 
     /**
      * 将搜索到的wifi根据信号强度从强到时弱进行排序
-     * @param list  存放周围wifi热点对象的列表
+     *
+     * @param list 存放周围wifi热点对象的列表
      */
     private void sortByLevel(List<ScanResult> list) {
 
@@ -481,12 +482,12 @@ public class MainWLANActivity extends AppCompatActivity {
     }
 
 
-    private void ShowWifiDialog(){
+    private void ShowWifiDialog() {
         Log.d(TAG, "ShowDialog enter");
 
         mWifiConfig = new WifiConfiguration();
 
-        networkId = mWifiAdmin.GetWifiConfig(SSID_SECTION,mWifiConfig);
+        networkId = mWifiAdmin.GetWifiConfig(SSID_SECTION, mWifiConfig);
 
         mCurrentWifiNetwork = mWifiAdmin.getConnectionInfo();
 
@@ -495,19 +496,19 @@ public class MainWLANActivity extends AppCompatActivity {
 
         Log.d(TAG, "The Connected wifi ssid : " + mCurrentWifiNetwork.getSSID());
 
-        Log.d(TAG, "networkId : " + networkId );
+        Log.d(TAG, "networkId : " + networkId);
         //判断当前AP是否被连接过
-        if(-1 == networkId){
+        if (-1 == networkId) {
             Log.d(TAG, "The " + SSID_SECTION + " will been connect");
             ConnectWifi();
 
         } else {
-            if(("\"" + SSID_SECTION + "\"").equals(mCurrentWifiNetwork.getSSID())){
-                DialogInterface.OnClickListener dialogOnclicListener=new DialogInterface.OnClickListener(){
+            if (("\"" + SSID_SECTION + "\"").equals(mCurrentWifiNetwork.getSSID())) {
+                DialogInterface.OnClickListener dialogOnclicListener = new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        switch(which){
+                        switch (which) {
                             case Dialog.BUTTON_POSITIVE:
 
                                 Log.d(TAG, "BUTTON_POSITIVE dismiss");
@@ -526,7 +527,7 @@ public class MainWLANActivity extends AppCompatActivity {
                 };
                 //dialog参数设置
                 //先得到构造器
-                AlertDialog.Builder builder=new AlertDialog.Builder(this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 //设置标题
                 builder.setTitle(SSID_SECTION);
 
@@ -536,15 +537,15 @@ public class MainWLANActivity extends AppCompatActivity {
                 //设置图标，图片id即可
                 builder.setIcon(R.mipmap.ic_launcher);
 
-                builder.setPositiveButton("取消",dialogOnclicListener);
+                builder.setPositiveButton("取消", dialogOnclicListener);
                 builder.setNeutralButton("断开连接", dialogOnclicListener);
                 builder.create().show();
             } else {
-                DialogInterface.OnClickListener dialogOnclicListener=new DialogInterface.OnClickListener(){
+                DialogInterface.OnClickListener dialogOnclicListener = new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        switch(which){
+                        switch (which) {
                             case Dialog.BUTTON_POSITIVE:
 
                                 Log.d(TAG, "ConnectWifi");
@@ -567,7 +568,7 @@ public class MainWLANActivity extends AppCompatActivity {
                 };
                 //dialog参数设置
                 //先得到构造器
-                AlertDialog.Builder builder=new AlertDialog.Builder(this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 //设置标题
                 builder.setTitle(SSID_SECTION);
 
@@ -577,7 +578,7 @@ public class MainWLANActivity extends AppCompatActivity {
                 //设置图标，图片id即可
                 builder.setIcon(R.mipmap.ic_launcher);
 
-                builder.setPositiveButton("连接",dialogOnclicListener);
+                builder.setPositiveButton("连接", dialogOnclicListener);
                 builder.setNegativeButton("删除", dialogOnclicListener);
                 builder.setNeutralButton("取消", dialogOnclicListener);
                 builder.create().show();
@@ -638,12 +639,12 @@ public class MainWLANActivity extends AppCompatActivity {
     }
     */
 
-    private void ConnectWifi(){
+    private void ConnectWifi() {
 
         Log.d(TAG, "ConnectWifi enter");
 
-        if(!(OPEN_WLAN.equals(WLAN_ENCRYPTION))) {
-            if(networkId == -1) {
+        if (!(OPEN_WLAN.equals(WLAN_ENCRYPTION))) {
+            if (networkId == -1) {
                 WifiPswDialog pswDialog = new WifiPswDialog(
                         MainWLANActivity.this,
                         new WifiPswDialog.OnCustomDialogListener() {
@@ -674,10 +675,10 @@ public class MainWLANActivity extends AppCompatActivity {
                                     int hasAddNetworkId = mWifiManager.addNetwork(configuration);
 
                                     //判断网络是否添加成功
-                                    if(hasAddNetworkId != -1){
-                                        Toast.makeText(MainWLANActivity.this,R.string.add_network_success,Toast.LENGTH_SHORT).show();
-                                    }else{
-                                        Toast.makeText(MainWLANActivity.this,R.string.add_network_failed,Toast.LENGTH_SHORT).show();
+                                    if (hasAddNetworkId != -1) {
+                                        Toast.makeText(MainWLANActivity.this, R.string.add_network_success, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(MainWLANActivity.this, R.string.add_network_failed, Toast.LENGTH_SHORT).show();
                                     }
 
                                     //连接到已经添加的网络
@@ -708,10 +709,10 @@ public class MainWLANActivity extends AppCompatActivity {
             int hasAddNetworkId = mWifiManager.addNetwork(OpenConfiguration);
 
             //判断网络是否添加成功
-            if(hasAddNetworkId != -1){
-                Toast.makeText(MainWLANActivity.this,R.string.add_network_success,Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(MainWLANActivity.this,R.string.add_network_failed,Toast.LENGTH_SHORT).show();
+            if (hasAddNetworkId != -1) {
+                Toast.makeText(MainWLANActivity.this, R.string.add_network_success, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainWLANActivity.this, R.string.add_network_failed, Toast.LENGTH_SHORT).show();
             }
 
             //连接到已经添加的网络
@@ -721,8 +722,8 @@ public class MainWLANActivity extends AppCompatActivity {
         Log.d(TAG, "ConnectWifi out");
     }
 
-    private void connectToNetwork(){
-        if(networkId == -1) {
+    private void connectToNetwork() {
+        if (networkId == -1) {
             WifiConfiguration configuration = null;
 
             if (WLAN_ENCRYPTION.contains("WPA")) {
@@ -733,10 +734,10 @@ public class MainWLANActivity extends AppCompatActivity {
 
                 Log.d(TAG, "configuration wep");
                 configuration = mWifiAdmin.createWifiInfo(SSID_SECTION, WiFi_Password, 2);
-            } else if (WLAN_ENCRYPTION.equals("[ESS]")){
+            } else if (WLAN_ENCRYPTION.equals("[ESS]")) {
                 Log.d(TAG, "OPEN WIFI OpenConfiguration");
                 configuration = mWifiAdmin.createWifiInfo(SSID_SECTION, "", 1);
-            }else{
+            } else {
                 Log.d(TAG, "Unrecognized encryption");
                 return;
             }
@@ -751,12 +752,12 @@ public class MainWLANActivity extends AppCompatActivity {
 
             Log.d(TAG, " connectToNetwork hasAddNetworkId = " + hasAddNetworkId);
             //判断网络是否添加成功
-            if(hasAddNetworkId == -1){
-                Log.d(TAG,"connectToNetwork show network failed");
-                Toast.makeText(MainWLANActivity.this,R.string.add_network_failed,Toast.LENGTH_SHORT).show();
-            }else{
-                Log.d(TAG,"connectToNetwork show network success");
-                Toast.makeText(MainWLANActivity.this,R.string.add_network_success,Toast.LENGTH_SHORT).show();
+            if (hasAddNetworkId == -1) {
+                Log.d(TAG, "connectToNetwork show network failed");
+                Toast.makeText(MainWLANActivity.this, R.string.add_network_failed, Toast.LENGTH_SHORT).show();
+            } else {
+                Log.d(TAG, "connectToNetwork show network success");
+                Toast.makeText(MainWLANActivity.this, R.string.add_network_success, Toast.LENGTH_SHORT).show();
             }
 
             //连接到已经添加的网络
@@ -769,7 +770,7 @@ public class MainWLANActivity extends AppCompatActivity {
     }
 
     //断开指定Wifi
-    private void DisConnectWifi(){
+    private void DisConnectWifi() {
 
         Log.d(TAG, "DisConnectWifi enter");
 
@@ -781,13 +782,13 @@ public class MainWLANActivity extends AppCompatActivity {
             int netId = mWifiAdmin.IsConfiguration(SSID_SECTION);
             Log.i(TAG, "DisConnectWifi netId = " + String.valueOf(netId));
 
-            if(-1 != netId){
+            if (-1 != netId) {
 
                 mWifiAdmin.disConnectionWifi(netId);
-                Log.d(TAG,"DisConnection Wifi success");
+                Log.d(TAG, "DisConnection Wifi success");
 
             } else {
-                Log.d(TAG,"Not found network id");
+                Log.d(TAG, "Not found network id");
             }
 
         } catch (Exception e) {
@@ -798,7 +799,7 @@ public class MainWLANActivity extends AppCompatActivity {
     }
 
     //移除指定Wifi
-    private void forgetWifi(){
+    private void forgetWifi() {
 
         Log.d(TAG, "forgetWifi enter");
 
@@ -810,13 +811,13 @@ public class MainWLANActivity extends AppCompatActivity {
             int netId = mWifiAdmin.IsConfiguration(SSID_SECTION);
             Log.i(TAG, "forgetWifi netId = " + String.valueOf(netId));
 
-            if(-1 != netId){
+            if (-1 != netId) {
 
                 mWifiAdmin.forgetNetwork(netId);
-                Log.d(TAG,"forgetWifi Wifi success");
+                Log.d(TAG, "forgetWifi Wifi success");
 
             } else {
-                Log.d(TAG,"Not found network id");
+                Log.d(TAG, "Not found network id");
             }
 
         } catch (Exception e) {
@@ -836,20 +837,21 @@ public class MainWLANActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO Auto-generated method stub
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_Refresh:
-                Log.d(TAG," menu_flash start scan");
+                Log.d(TAG, " menu_flash start scan");
                 mWifiAdmin.startScan();
-                Toast.makeText(MainWLANActivity.this,"刷新成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainWLANActivity.this, "刷新成功", Toast.LENGTH_SHORT).show();
                 break;
-           case R.id.menu_add_wlan:
-               showCustomViewDialog();
+            case R.id.menu_add_wlan:
+                showCustomViewDialog();
                 break;
 /*             case R.id.menu_quit:
 
                 Toast.makeText(MainActivity.this, ""+"退出", Toast.LENGTH_SHORT).show();
                 break;
-*/            default:
+*/
+            default:
                 break;
         }
 //         Toast.makeText(MainActivity.this, ""+item.getItemId(), Toast.LENGTH_SHORT).show();
@@ -857,19 +859,17 @@ public class MainWLANActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showCustomViewDialog(){
-        final AlertDialog.Builder mAlertDialog=new AlertDialog.Builder(this);
+    private void showCustomViewDialog() {
+        final AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(this);
 
         /**
          * 设置内容区域为自定义View
          */
-        final LinearLayout loginDialog= (LinearLayout) getLayoutInflater().inflate(R.layout.custom_view,null);
+        final LinearLayout loginDialog = (LinearLayout) getLayoutInflater().inflate(R.layout.custom_view, null);
         mAlertDialog.setView(loginDialog);
 
-        mAlertDialog.setPositiveButton(R.string.menu_custom_view_dialog_Cancel, new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int whichButton)
-            {
+        mAlertDialog.setPositiveButton(R.string.menu_custom_view_dialog_Cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();
             }
         });
@@ -877,29 +877,29 @@ public class MainWLANActivity extends AppCompatActivity {
         mAlertDialog.setNegativeButton(R.string.menu_custom_view_dialog_Login, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                EditText mAddNetworkPasswordEditText = (EditText)loginDialog.findViewById(R.id.menu_add_network_password_EditText);
-                EditText mAddNetworkSSIDEditText = (EditText)loginDialog.findViewById(R.id.menu_add_network_ssid_EditText);
-                Spinner mAddNetworkSecuritySpinner = (Spinner)loginDialog.findViewById(R.id.menu_custom_view_dialog_security_spinner);
+                EditText mAddNetworkPasswordEditText = (EditText) loginDialog.findViewById(R.id.menu_add_network_password_EditText);
+                EditText mAddNetworkSSIDEditText = (EditText) loginDialog.findViewById(R.id.menu_add_network_ssid_EditText);
+                Spinner mAddNetworkSecuritySpinner = (Spinner) loginDialog.findViewById(R.id.menu_custom_view_dialog_security_spinner);
 
-                Log.d(TAG,"mAddNetworkPasswordEditText = " + mAddNetworkPasswordEditText.getText().toString()
+                Log.d(TAG, "mAddNetworkPasswordEditText = " + mAddNetworkPasswordEditText.getText().toString()
                         + " mAddNetworkSSIDEditText = " + mAddNetworkSSIDEditText.getText().toString()
                         + " mAddNetworkSecuritySpinner = " + mAddNetworkSecuritySpinner.getSelectedItem().toString());
 
-                if(mAddNetworkSSIDEditText.length() < 8){
-                    Toast.makeText(MainWLANActivity.this,R.string.add_network_failed + " , 请输入8位的SSID",Toast.LENGTH_SHORT).show();
+                if (mAddNetworkSSIDEditText.length() < 8) {
+                    Toast.makeText(MainWLANActivity.this, R.string.add_network_failed + " , 请输入8位的SSID", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //填写完正确的SSID、密码、加密方式
-                Log.d(TAG,"Start add network");
+                Log.d(TAG, "Start add network");
                 mWifiConfig = new WifiConfiguration();
 
                 SSID_SECTION = mAddNetworkSSIDEditText.getText().toString();
 
-                networkId = mWifiAdmin.GetWifiConfig(SSID_SECTION,mWifiConfig);
+                networkId = mWifiAdmin.GetWifiConfig(SSID_SECTION, mWifiConfig);
 
-                if(mAddNetworkSecuritySpinner.getSelectedItem().toString().equals("无")){
+                if (mAddNetworkSecuritySpinner.getSelectedItem().toString().equals("无")) {
                     WLAN_ENCRYPTION = OPEN_WLAN;
-                }else{
+                } else {
                     WLAN_ENCRYPTION = mAddNetworkSecuritySpinner.getSelectedItem().toString();
                 }
 

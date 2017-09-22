@@ -1,14 +1,14 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/menu_Refresh"
         android:orderInCategory="1"
-        android:title="@string/menu_Refresh"/>
+        android:title="@string/menu_Refresh" />
 
     <item
         android:id="@+id/menu_add_wlan"
         android:orderInCategory="2"
-        android:title="@string/menu_add_wlan"/>
+        android:title="@string/menu_add_wlan" />
 
     <!--很遗憾暂未实现
     <item

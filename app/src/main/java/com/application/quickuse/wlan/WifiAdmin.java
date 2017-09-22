@@ -285,6 +285,7 @@ public class WifiAdmin {
     }
 
     // ============
+
     /**
      * 连接指定Id的WIFI
      *
@@ -328,8 +329,8 @@ public class WifiAdmin {
         for (int i = 0; i < wifiConfigList.size(); i++) {
             Log.i(TAG, "IsConfiguration SSID : " + wifiConfigList.get(i).SSID + " networkId : " + String.valueOf(wifiConfigList.get(i).networkId));
 
-            if (wifiConfigList.get(i).SSID.equals("\""+ SSID +"\"")) {// 地址相同
-                Log.i(TAG, "IsConfiguration The ssid is equals" );
+            if (wifiConfigList.get(i).SSID.equals("\"" + SSID + "\"")) {// 地址相同
+                Log.i(TAG, "IsConfiguration The ssid is equals");
                 return wifiConfigList.get(i).networkId;
             }
         }
@@ -343,8 +344,8 @@ public class WifiAdmin {
 
         for (int i = 0; i < wifiConfigList.size(); i++) {
 
-            if (wifiConfigList.get(i).SSID.equals("\""+ SSID +"\"")) {// 地址相同
-                Log.i(TAG, "GetWifiConfig ssid is equals" );
+            if (wifiConfigList.get(i).SSID.equals("\"" + SSID + "\"")) {// 地址相同
+                Log.i(TAG, "GetWifiConfig ssid is equals");
 
                 WifiConfiguration = wifiConfigList.get(i);
 
